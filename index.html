@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Full-Stack &amp; Blockchain Engineer — Portfolio</title>
+<meta name="description" content="Full-Stack & Blockchain Engineer with 7+ years building dApps, NFT platforms, DeFi, and Web3 games." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<meta name="theme-color" content="#07080d" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07080d;
+    --bg-2: #0d0f18;
+    --panel: rgba(255,255,255,0.035);
+    --panel-2: rgba(255,255,255,0.06);
+    --line: rgba(255,255,255,0.09);
+    --text: #e9ebf3;
+    --muted: #9aa0b4;
+    --dim: #6b7086;
+    --accent: #7c5cff;
+    --accent-2: #22d3ee;
+    --accent-3: #f472b6;
+    --ok: #34d399;
+    --radius: 18px;
+    --maxw: 1180px;
+    --font: "Inter", system-ui, sans-serif;
+    --display: "Space Grotesk", "Inter", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Background ambience */
+  .bg-glow {
+    position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(700px 500px at 85% -10%, rgba(124,92,255,0.22), transparent 60%),
+      radial-gradient(600px 400px at -10% 30%, rgba(34,211,238,0.12), transparent 60%),
+      radial-gradient(500px 400px at 50% 110%, rgba(244,114,182,0.10), transparent 60%);
+  }
+  .bg-grid {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(7,8,13,0.6);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    font-family: var(--mono); font-size: 13px; font-weight: 600; color: #fff;
+  }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; padding: 7px 12px; border-radius: 999px;
+    border: 1px solid rgba(52,211,153,0.3); background: rgba(52,211,153,0.08); color: var(--ok);
+  }
+  .status-pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(52,211,153,.6); animation: ping 2s infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,.6);} 80%,100% { box-shadow: 0 0 0 8px rgba(52,211,153,0);} }
+
+  /* Hero */
+  .hero { padding: 96px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--accent-2); letter-spacing: 0.04em; margin-bottom: 18px; }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.035em;
+  }
+  .grad {
+    background: linear-gradient(100deg, #fff 0%, #c4b5fd 40%, var(--accent-2) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.lead { margin-top: 22px; font-size: 18px; color: var(--muted); max-width: 560px; }
+  .hero-cta { margin-top: 34px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 20px; border-radius: 12px; font-weight: 600; font-size: 14.5px;
+    border: 1px solid var(--line); background: var(--panel); transition: .2s;
+  }
+  .btn:hover { background: var(--panel-2); transform: translateY(-1px); }
+  .btn.primary { background: linear-gradient(135deg, var(--accent), #5b8cff); border-color: transparent; color: #fff; box-shadow: 0 10px 30px -10px rgba(124,92,255,.7); }
+  .stats { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; max-width: 560px; }
+  .stat { background: var(--bg-2); padding: 18px 20px; }
+  .stat b { display: block; font-family: var(--display); font-size: 28px; letter-spacing: -0.02em; }
+  .stat span { font-size: 12.5px; color: var(--dim); }
+
+  /* Hero visual: animated chain */
+  .hero-visual { position: relative; aspect-ratio: 1; max-width: 460px; justify-self: end; width: 100%; }
+  .orbit { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.1); animation: spin 40s linear infinite; }
+  .orbit.o2 { inset: 14%; animation-duration: 28s; animation-direction: reverse; border-style: solid; border-color: rgba(124,92,255,0.18); }
+  .orbit.o3 { inset: 30%; animation-duration: 18s; border-color: rgba(34,211,238,0.18); }
+  .orbit .node {
+    position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    padding: 6px 10px; border-radius: 10px; font-family: var(--mono); font-size: 11px;
+    background: var(--bg-2); border: 1px solid var(--line); white-space: nowrap;
+    animation: spin 40s linear infinite reverse;
+  }
+  .orbit.o2 .node { animation-duration: 28s; animation-direction: normal; }
+  .orbit.o3 .node { animation-duration: 18s; }
+  .orbit .node.b { top: auto; bottom: -18px; }  .core {
+    position: absolute; inset: 40%; border-radius: 24px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center; font-family: var(--mono); font-weight: 600; font-size: 22px; color: #fff;
+    box-shadow: 0 0 80px rgba(124,92,255,.55), inset 0 0 0 1px rgba(255,255,255,.25);
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes float { 50% { transform: translateY(-8px) rotate(3deg); } }
+
+  /* Sections */
+  section { padding: 88px 0; }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+  .sec-tag { font-family: var(--mono); font-size: 12.5px; color: var(--accent-2); margin-bottom: 10px; }
+  h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; line-height: 1.1; }
+  .sec-sub { color: var(--muted); max-width: 520px; margin-top: 12px; }
+
+  /* Filters */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    font-size: 13px; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--panel); color: var(--muted); transition: .2s;
+    font-family: inherit;
+  }
+  .chip:hover { color: var(--text); }
+  .chip.active { color: #fff; background: rgba(124,92,255,.18); border-color: rgba(124,92,255,.5); }
+
+  /* Carousel */
+  .carousel { position: relative; }
+  .viewport { overflow: hidden; margin: 0 -10px; padding: 10px 0 20px; cursor: grab; touch-action: pan-y; }
+  .viewport.dragging { cursor: grabbing; }
+  .track { display: flex; transition: transform .6s cubic-bezier(.22,.8,.2,1); will-change: transform; }
+  .viewport.dragging .track { transition: none; }
+  .slide { flex: 0 0 calc(100% / var(--per, 3)); padding: 0 10px; user-select: none; }
+  .card {
+    height: 100%; border-radius: var(--radius); overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid var(--line); transition: transform .35s, border-color .35s, box-shadow .35s;
+    display: flex; flex-direction: column;
+  }
+  .card:hover { transform: translateY(-6px); border-color: rgba(124,92,255,.45); box-shadow: 0 24px 50px -24px rgba(124,92,255,.5); }
+  .thumb { position: relative; aspect-ratio: 5 / 3; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .thumb svg { width: 100%; height: 100%; transition: transform .7s; }
+  .card:hover .thumb svg { transform: scale(1.05); }
+  .thumb .badge {
+    position: absolute; top: 12px; left: 12px; font-size: 11px; font-family: var(--mono);
+    padding: 5px 9px; border-radius: 8px; background: rgba(7,8,13,.7); backdrop-filter: blur(6px); border: 1px solid var(--line);
+  }
+  .thumb .chain { left: auto; right: 12px; color: #c4b5fd; }
+  .card-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .card-body h3 { font-family: var(--display); font-size: 20px; letter-spacing: -0.015em; }
+  .card-body .org { font-size: 12.5px; color: var(--dim); font-family: var(--mono); }
+  .card-body p { font-size: 14.5px; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .tags span { font-size: 11.5px; font-family: var(--mono); padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,.05); color: #c9cde0; }
+
+  .ctrls { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; gap: 16px; }
+  .dots { display: flex; gap: 8px; flex-wrap: wrap; }
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.18); border: 0; cursor: pointer; transition: .3s; }
+  .dot.active { width: 28px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .arrows { display: flex; gap: 10px; }
+  .arrow {
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; cursor: pointer;
+    border: 1px solid var(--line); background: var(--panel); color: var(--text); transition: .2s;
+  }
+  .arrow:hover { background: var(--panel-2); border-color: rgba(124,92,255,.5); }
+  .arrow svg { width: 18px; height: 18px; }
+  .note { margin-top: 18px; font-size: 13px; color: var(--dim); display: flex; gap: 8px; align-items: center; }
+
+  /* Services */
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .svc { padding: 26px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); transition: .3s; }
+  .svc:hover { background: var(--panel-2); }
+  .svc .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 18px; background: rgba(124,92,255,.14); color: #c4b5fd; }
+  .svc .ico svg { width: 22px; height: 22px; }
+  .svc h3 { font-family: var(--display); font-size: 19px; margin-bottom: 8px; }
+  .svc p { color: var(--muted); font-size: 14.5px; }
+
+  /* Experience */
+  .timeline { position: relative; display: grid; gap: 16px; }
+  .job {
+    display: grid; grid-template-columns: 240px 1fr; gap: 28px;
+    padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel);
+  }
+  .job .who b { display: block; font-family: var(--display); font-size: 20px; letter-spacing: -0.01em; }
+  .job .who span { font-size: 13px; color: var(--dim); font-family: var(--mono); }
+  .job .role { font-weight: 600; margin-bottom: 8px; }
+  .job ul { list-style: none; display: grid; gap: 8px; }
+  .job li { position: relative; padding-left: 18px; color: var(--muted); font-size: 14.5px; }
+  .job li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 2px; background: var(--accent); }
+  .job .tags { padding-top: 14px; }
+
+  /* Stack */
+  .stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .stack-col { padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); }
+  .stack-col h4 { font-family: var(--mono); font-size: 12.5px; color: var(--accent-2); font-weight: 500; margin-bottom: 14px; letter-spacing: .04em; text-transform: uppercase; }
+  .stack-col div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-col span { font-size: 13px; padding: 6px 10px; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid var(--line); }
+
+  /* Approach */
+  .approach { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+  .step { padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); position: relative; }
+  .step::before { counter-increment: step; content: "0" counter(step); font-family: var(--mono); font-size: 13px; color: var(--accent-2); }
+  .step h4 { font-family: var(--display); font-size: 18px; margin: 10px 0 6px; }
+  .step p { color: var(--muted); font-size: 14px; }
+
+  /* CTA */
+  .cta {
+    border-radius: 26px; padding: 56px; text-align: center; border: 1px solid rgba(124,92,255,.35);
+    background: radial-gradient(600px 240px at 50% 0%, rgba(124,92,255,.25), transparent 70%), var(--bg-2);
+  }
+  .cta p { color: var(--muted); max-width: 560px; margin: 14px auto 0; }
+  footer { padding: 36px 0 48px; color: var(--dim); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 28px; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s, transform .8s; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 980px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-visual { justify-self: center; max-width: 340px; }
+    .services, .stack, .approach { grid-template-columns: repeat(2, 1fr); }
+    .job { grid-template-columns: 1fr; gap: 14px; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 0 40px; }
+    section { padding: 64px 0; }
+    .services, .stack, .approach { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .stat { padding: 14px; }
+    .stat b { font-size: 22px; }
+    .cta { padding: 36px 20px; }
+    .hero-visual { max-width: 280px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#" class="logo"><span class="logo-mark">&lt;/&gt;</span> Full-Stack · Web3</a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+    </nav>
+    <span class="status-pill"><i></i> Open to contracts</span>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">// full-stack &amp; blockchain engineer</div>
+        <h1>I build <span class="grad">on-chain products</span> people actually play, trade &amp; use.</h1>
+        <p class="lead">7+ years shipping production web apps, mobile apps, and dApps end to end: smart contracts, APIs, real-time backends, and polished frontends. From client websites and mobile apps to NFT platforms, DEXs, and play-to-earn games.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn primary">View selected work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#experience" class="btn">Experience</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>7+</b><span>Years experience</span></div>
+          <div class="stat"><b>10+</b><span>Web3 products</span></div>
+          <div class="stat"><b>E2E</b><span>Contract → UI</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="orbit"><span class="node">Solidity</span><span class="node b">Node.js</span></div>
+        <div class="orbit o2"><span class="node">React / Next.js</span><span class="node b">Polygon</span></div>
+        <div class="orbit o3"><span class="node">NFT</span></div>
+        <div class="core">{ }</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-tag">01 / selected work</div>
+          <h2>Featured projects</h2>
+          <p class="sec-sub">A cross-section of the Web3 products I've designed and built, from NFT economies to real-time betting engines and blockchain games.</p>
+        </div>
+        <div class="filters" id="filters"></div>
+      </div>
+
+      <div class="carousel reveal" id="carousel">
+        <div class="viewport" id="viewport"><div class="track" id="track"></div></div>
+        <div class="ctrls">
+          <div class="dots" id="dots"></div>
+          <div class="arrows">
+            <button class="arrow" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="arrow" id="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <p class="note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          Several deployments have since been retired by their owners. Code walkthroughs and technical details are available on request.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-tag">02 / what i do</div>
+          <h2>From smart contract to shipped product</h2>
+        </div>
+      </div>
+      <div class="services">
+        <div class="svc reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></div>
+          <h3>Smart Contracts</h3>
+          <p>Secure, gas-aware contracts for tokens, NFTs (ERC-721/1155), marketplaces, staking, and swaps, with test coverage and audit-ready code.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h3>Full-Stack Web &amp; Mobile</h3>
+          <p>Web apps, dashboards, and cross-platform mobile apps: React/Next.js frontends, Node.js APIs, and databases, built and shipped end to end.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+          <h3>Backends &amp; APIs</h3>
+          <p>Node.js services, indexers, and WebSocket servers for player data, game state, rewards, and chain event processing.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="12" rx="4"/><path d="M7 11v4M5 13h4M15 12h.01M18 14h.01"/></svg></div>
+          <h3>Web3 Games &amp; GameFi</h3>
+          <p>Play-to-earn loops, NFT in-game assets, reward systems, and provably fair mechanics: crash, coinflip, and more.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+          <h3>DeFi &amp; Marketplaces</h3>
+          <p>DEX swap flows, liquidity UIs, NFT minting and trading platforms, built for clarity under real money.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 014-4h6a4 4 0 014 4v2M16 3.13a4 4 0 010 7.75M22 21v-2a4 4 0 00-3-3.87"/></svg></div>
+          <h3>Mentoring &amp; Leadership</h3>
+          <p>Code reviews, architecture guidance, and mentoring developers onto Web3 teams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-tag">03 / experience</div>
+          <h2>Where I've built</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="job reveal">
+          <div class="who"><b>Polygon ecosystem company</b><span>Web3 · Remote</span></div>
+          <div>
+            <div class="role">Full-Stack Blockchain Developer</div>
+            <ul>
+              <li>Built and shipped <strong>Grab Coin Club</strong>, <strong>Open Smart Club</strong>, and the <strong>Polarity</strong> game on Polygon.</li>
+              <li>Developed smart contracts and the frontend and backend integration for token and NFT driven products.</li>
+            </ul>
+            <div class="tags"><span>Polygon</span><span>Solidity</span><span>React</span><span>Node.js</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="who"><b>ORAO Network</b><span>Web3 · Remote</span></div>
+          <div>
+            <div class="role">Blockchain Engineer</div>
+            <ul>
+              <li>Built <strong>Bustachain</strong>, a real-time crash betting game, along with coinflip betting platforms.</li>
+              <li>Developed a Web3 domain sales platform.</li>
+              <li>Implemented provably fair game logic, wallet flows, and real-time multiplayer backends.</li>
+            </ul>
+            <div class="tags"><span>Provable randomness</span><span>WebSockets</span><span>Smart contracts</span><span>React</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="who"><b>Pontem Network</b><span>Web3 · Remote</span></div>
+          <div>
+            <div class="role">Developer Mentor</div>
+            <ul>
+              <li>Mentored developers on blockchain development practices, code quality, and project delivery.</li>
+            </ul>
+            <div class="tags"><span>Mentoring</span><span>Code review</span><span>Architecture</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="who"><b>White Tiger</b><span>Full-stack · Web</span></div>
+          <div>
+            <div class="role">Full-Stack Developer</div>
+            <ul>
+              <li>Built and maintained web applications end to end, from database design and REST APIs to responsive frontends.</li>
+              <li>Developed admin dashboards, authentication, and third-party integrations such as payments and email.</li>
+              <li>Worked closely with designers and stakeholders to ship features on schedule and keep the codebase maintainable.</li>
+            </ul>
+            <div class="tags"><span>React</span><span>Node.js</span><span>REST APIs</span><span>PostgreSQL</span><span>MongoDB</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="who"><b>RockSolidMedia</b><span>Australia · Remote</span></div>
+          <div>
+            <div class="role">Full-Stack Web &amp; Mobile App Developer</div>
+            <ul>
+              <li>Delivered websites and mobile apps for agency clients across a range of industries.</li>
+              <li>Built responsive marketing sites, CMS-driven pages, and custom web apps from design to deployment.</li>
+              <li>Developed cross-platform mobile apps sharing a backend and API layer with their web counterparts.</li>
+            </ul>
+            <div class="tags"><span>React</span><span>Next.js</span><span>React Native</span><span>Node.js</span><span>CMS</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-tag">04 / toolbox</div>
+          <h2>Tech stack</h2>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="stack-col reveal"><h4>Blockchain</h4><div><span>Solidity</span><span>Hardhat</span><span>OpenZeppelin</span><span>ethers.js</span><span>web3.js</span><span>wagmi</span><span>IPFS</span><span>Polygon</span><span>EVM chains</span></div></div>
+        <div class="stack-col reveal"><h4>Frontend</h4><div><span>React</span><span>Next.js</span><span>Vue.js</span><span>TypeScript</span><span>JavaScript</span><span>HTML5 / CSS3</span><span>Tailwind</span><span>Redux</span><span>Canvas / WebGL</span></div></div>
+        <div class="stack-col reveal"><h4>Backend</h4><div><span>Node.js</span><span>Express</span><span>NestJS</span><span>PHP / Laravel</span><span>Socket.io</span><span>REST</span><span>GraphQL</span><span>JWT / OAuth</span></div></div>
+        <div class="stack-col reveal"><h4>Mobile</h4><div><span>React Native</span><span>Expo</span><span>iOS &amp; Android</span><span>Push notifications</span><span>App Store / Play release</span></div></div>
+        <div class="stack-col reveal"><h4>Databases</h4><div><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Redis</span><span>Firebase</span></div></div>
+        <div class="stack-col reveal"><h4>DevOps &amp; Tools</h4><div><span>Docker</span><span>AWS</span><span>Vercel</span><span>CI/CD</span><span>Git</span><span>Stripe</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-tag">05 / how i work</div>
+          <h2>MVP first, then scale</h2>
+        </div>
+      </div>
+      <div class="approach">
+        <div class="step reveal"><h4>Scope</h4><p>Turn the idea into a clear MVP: core loop, on-chain vs off-chain split, milestones.</p></div>
+        <div class="step reveal"><h4>Build</h4><p>Contracts, backend, and UI in parallel, with a testnet demo early and often.</p></div>
+        <div class="step reveal"><h4>Harden</h4><p>Tests, edge cases, wallet UX polish, and security review before mainnet.</p></div>
+        <div class="step reveal"><h4>Iterate</h4><p>Ship, measure player feedback, and grow into marketplaces, rewards, and more.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta reveal">
+        <div class="sec-tag">06 / next</div>
+        <h2>Building a Web3 game or dApp?</h2>
+        <p>I'm available for freelance and contract work, solo or as part of a small team, from first prototype to long-term collaboration.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Full-Stack &amp; Blockchain Engineer</span>
+    <span>Built with care · <span id="year"></span></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // ---------- Project data ----------
+  const projects = [
+    { title: "Bustachain", org: "ORAO Network", cat: "Betting", chain: "EVM", art: "crash",
+      desc: "Real-time multiplayer crash game with live multiplier curve, instant cash-outs, and provably fair round results.",
+      tags: ["Solidity", "Socket.io", "React", "Node.js"] },
+    { title: "Polarity", org: "Polygon ecosystem", cat: "Gaming", chain: "Polygon", art: "polarity",
+      desc: "Blockchain game with on-chain rewards and wallet-connected player progression.",
+      tags: ["Polygon", "Smart contracts", "React", "Game logic"] },
+    { title: "Grab Coin Club", org: "Polygon ecosystem", cat: "NFT", chain: "Polygon", art: "club",
+      desc: "Membership-driven Web3 club platform with token and NFT based access and rewards.",
+      tags: ["Polygon", "ERC-721", "Next.js", "ethers.js"] },
+    { title: "Open Smart Club", org: "Polygon ecosystem", cat: "DeFi", chain: "Polygon", art: "smart",
+      desc: "Smart-contract powered community platform with on-chain membership and reward distribution.",
+      tags: ["Solidity", "Polygon", "React", "Node.js"] },
+    { title: "Coinflip Arena", org: "ORAO Network", cat: "Betting", chain: "EVM", art: "coinflip",
+      desc: "Provably fair coinflip betting with verifiable randomness, instant settlement, and a clean wallet-first UX.",
+      tags: ["VRF", "Solidity", "React", "wagmi"] },
+    { title: "Web3 Domain Store", org: "ORAO Network", cat: "DeFi", chain: "EVM", art: "domain",
+      desc: "Search, register, and purchase blockchain domains with on-chain ownership and wallet checkout.",
+      tags: ["Smart contracts", "Next.js", "ethers.js"] },
+    { title: "NFT Marketplace", org: "Client project", cat: "NFT", chain: "EVM", art: "market",
+      desc: "Full NFT marketplace: listings, offers, auctions, collections, and royalty-aware trades.",
+      tags: ["ERC-721/1155", "IPFS", "Next.js", "Indexer"] },
+    { title: "NFT Minting Platform", org: "Client project", cat: "NFT", chain: "EVM", art: "mint",
+      desc: "Launch site for NFT collections with whitelist phases, reveal mechanics, and gas-optimized minting.",
+      tags: ["ERC-721A", "Merkle allowlist", "React", "IPFS"] },
+    { title: "DEX", org: "Client project", cat: "DeFi", chain: "EVM", art: "dex",
+      desc: "Token swap and liquidity interface with price impact, slippage controls, and LP position management.",
+      tags: ["AMM", "Solidity", "React", "Charts"] },
+    { title: "P2E Metaverse Game", org: "Client project", cat: "Gaming", chain: "EVM", art: "metaverse",
+      desc: "Play-to-earn metaverse with NFT land and avatars, in-game economy, and token rewards for gameplay.",
+      tags: ["NFT assets", "Token rewards", "WebGL", "Node.js"] },
+    { title: "Web & App Projects", org: "RockSolidMedia · AU", cat: "Web", chain: "Web2", art: "web",
+      desc: "Client websites and mobile apps delivered end to end for an Australian digital agency.",
+      tags: ["React", "Node.js", "Mobile", "CMS"] },
+  ];
+
+  // ---------- Generated thumbnails ----------
+  let uid = 0;
+  const bg = (a, b, id) => `
+    <defs>
+      <linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>
+      <radialGradient id="r${id}" cx=".75" cy=".2" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      <pattern id="p${id}" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" fill="none" stroke="#fff" stroke-opacity=".06"/></pattern>
+    </defs>
+    <rect width="400" height="240" fill="url(#g${id})"/>
+    <rect width="400" height="240" fill="url(#p${id})"/>
+    <rect width="400" height="240" fill="url(#r${id})"/>`;
+
+  const art = {
+    crash(id) {
+      return bg("#1a0b2e", "#3b0f3a", id) + `
+        <path d="M20 215 C 160 210, 250 180, 330 60" fill="none" stroke="#f472b6" stroke-width="4" stroke-linecap="round"/>
+        <path d="M20 215 C 160 210, 250 180, 330 60 L330 220 L20 220Z" fill="#f472b6" opacity=".12"/>
+        <circle cx="330" cy="60" r="9" fill="#fff"/><circle cx="330" cy="60" r="20" fill="#f472b6" opacity=".3"/>
+        <text x="40" y="92" font-family="Space Grotesk" font-weight="700" font-size="58" fill="#fff">2.47×</text>
+        <text x="42" y="118" font-family="JetBrains Mono" font-size="12" fill="#f9a8d4">CASH OUT · ROUND #48213</text>`;
+    },
+    coinflip(id) {
+      return bg("#0a1a2f", "#132f4c", id) + `
+        <ellipse cx="200" cy="200" rx="90" ry="10" fill="#000" opacity=".35"/>
+        <circle cx="200" cy="110" r="66" fill="#fbbf24"/><circle cx="200" cy="110" r="54" fill="none" stroke="#fde68a" stroke-width="4"/>
+        <text x="200" y="128" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="48" fill="#92400e">H</text>
+        <rect x="40" y="36" width="78" height="30" rx="8" fill="#22d3ee" opacity=".18"/><text x="79" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#67e8f9">HEADS</text>
+        <rect x="282" y="36" width="78" height="30" rx="8" fill="#fff" opacity=".08"/><text x="321" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#cbd5e1">TAILS</text>
+        <text x="200" y="226" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#93c5fd">x1.96 payout · verified</text>`;
+    },
+    dex(id) {
+      const c = [[40,140,120,90],[70,120,110,70],[100,100,130,85],[130,90,110,60],[160,80,105,55],[190,70,95,50],[220,95,120,80],[250,60,90,40]];
+      return bg("#04201c", "#0b3b3a", id) +
+        c.map(([x,o,cl,h],i)=>{const up=i%3!==2;return `<line x1="${x+8}" x2="${x+8}" y1="${Math.min(o,cl)-14}" y2="${Math.max(o,cl)+14}" stroke="${up?'#34d399':'#f87171'}" stroke-width="2"/><rect x="${x}" y="${Math.min(o,cl)}" width="16" height="${Math.abs(o-cl)||4}" rx="2" fill="${up?'#34d399':'#f87171'}"/>`}).join("") + `
+        <rect x="280" y="40" width="100" height="160" rx="14" fill="#06120f" stroke="#34d399" stroke-opacity=".4"/>
+        <rect x="292" y="56" width="76" height="34" rx="8" fill="#fff" opacity=".06"/><text x="300" y="78" font-family="JetBrains Mono" font-size="11" fill="#a7f3d0">1.0 ETH</text>
+        <circle cx="330" cy="104" r="11" fill="#34d399"/><path d="M326 101l4 5 4-5" stroke="#06120f" stroke-width="2" fill="none"/>
+        <rect x="292" y="120" width="76" height="34" rx="8" fill="#fff" opacity=".06"/><text x="300" y="142" font-family="JetBrains Mono" font-size="11" fill="#a7f3d0">3,412 USDC</text>
+        <rect x="292" y="164" width="76" height="24" rx="8" fill="#34d399"/><text x="330" y="180" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="12" fill="#06120f">SWAP</text>`;
+    },
+    mint(id) {
+      return bg("#1b1035", "#2d1b69", id) + `
+        <g transform="rotate(-10 140 120)"><rect x="80" y="40" width="110" height="140" rx="14" fill="#f472b6"/><circle cx="135" cy="100" r="30" fill="#fff" opacity=".5"/></g>
+        <g transform="rotate(6 220 120)"><rect x="160" y="34" width="120" height="152" rx="14" fill="#7c5cff"/><path d="M190 150 L220 80 L250 150Z" fill="#c4b5fd"/><circle cx="220" cy="70" r="10" fill="#fff"/></g>
+        <rect x="240" y="176" width="130" height="38" rx="12" fill="#fff"/><text x="305" y="200" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="15" fill="#2d1b69">MINT NOW</text>
+        <text x="30" y="214" font-family="JetBrains Mono" font-size="12" fill="#ddd6fe">4,821 / 10,000 minted</text>`;
+    },
+    market(id) {
+      const cols = ["#7c5cff","#22d3ee","#f472b6","#fbbf24","#34d399","#fb7185"];
+      let s = bg("#0b0f24", "#1e1b4b", id);
+      cols.forEach((c,i)=>{ const x = 26 + (i%3)*124, y = 22 + Math.floor(i/3)*108;
+        s += `<rect x="${x}" y="${y}" width="112" height="98" rx="12" fill="#fff" opacity=".06"/>
+          <rect x="${x+8}" y="${y+8}" width="96" height="58" rx="8" fill="${c}" opacity=".85"/>
+          <circle cx="${x+56}" cy="${y+37}" r="14" fill="#fff" opacity=".45"/>
+          <text x="${x+10}" y="${y+86}" font-family="JetBrains Mono" font-size="11" fill="#e0e7ff">${(0.12+i*0.37).toFixed(2)} Ξ</text>`; });
+      return s;
+    },
+    metaverse(id) {
+      let s = bg("#071a2b", "#1b2a5c", id);
+      for (let r=0;r<5;r++) for (let c=0;c<5;c++) {
+        const x = 200 + (c-r)*34, y = 70 + (c+r)*17;
+        const col = (r*5+c)%7===0 ? "#f472b6" : (r+c)%3===0 ? "#22d3ee" : "#7c5cff";
+        s += `<path d="M${x} ${y} l34 17 l-34 17 l-34 -17z" fill="${col}" opacity="${(r+c)%3===0?.9:.35}" stroke="#fff" stroke-opacity=".15"/>`;
+      }
+      return s + `<rect x="24" y="24" width="120" height="30" rx="8" fill="#000" opacity=".35"/><text x="36" y="44" font-family="JetBrains Mono" font-size="12" fill="#67e8f9">+250 $GEM</text>
+        <rect x="24" y="62" width="94" height="8" rx="4" fill="#fff" opacity=".12"/><rect x="24" y="62" width="64" height="8" rx="4" fill="#34d399"/>`;
+    },
+    polarity(id) {
+      return bg("#0c0a20", "#251048", id) + `
+        <circle cx="130" cy="120" r="56" fill="#22d3ee" opacity=".2"/><circle cx="130" cy="120" r="36" fill="#22d3ee"/>
+        <text x="130" y="134" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="40" fill="#0c0a20">+</text>
+        <circle cx="270" cy="120" r="56" fill="#f472b6" opacity=".2"/><circle cx="270" cy="120" r="36" fill="#f472b6"/>
+        <text x="270" y="133" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="44" fill="#0c0a20">−</text>
+        <path d="M166 104 Q200 70 234 104 M166 136 Q200 170 234 136" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="4 6"/>
+        <text x="200" y="222" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c4b5fd">LEVEL 12 · SCORE 18,440</text>`;
+    },
+    club(id) {
+      return bg("#1f1300", "#3d2a05", id) + `
+        <g transform="rotate(-6 200 120)">
+          <rect x="90" y="50" width="220" height="136" rx="16" fill="#111" stroke="#fbbf24" stroke-opacity=".6"/>
+          <circle cx="132" cy="92" r="20" fill="#fbbf24"/><text x="132" y="99" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="18" fill="#3d2a05">G</text>
+          <text x="164" y="88" font-family="Space Grotesk" font-weight="700" font-size="16" fill="#fde68a">GOLD MEMBER</text>
+          <text x="164" y="106" font-family="JetBrains Mono" font-size="10" fill="#d6b65a">0x7a3f…c91e</text>
+          <rect x="110" y="140" width="80" height="8" rx="4" fill="#fbbf24" opacity=".25"/><rect x="110" y="140" width="56" height="8" rx="4" fill="#fbbf24"/>
+          <text x="290" y="168" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#fde68a">TIER III</text>
+        </g>`;
+    },
+    smart(id) {
+      return bg("#061325", "#0e2a4a", id) + `
+        <rect x="40" y="36" width="200" height="168" rx="12" fill="#020617" stroke="#22d3ee" stroke-opacity=".3"/>
+        <circle cx="56" cy="52" r="4" fill="#f87171"/><circle cx="70" cy="52" r="4" fill="#fbbf24"/><circle cx="84" cy="52" r="4" fill="#34d399"/>
+        <g font-family="JetBrains Mono" font-size="11">
+          <text x="56" y="82" fill="#c084fc">contract <tspan fill="#67e8f9">Club</tspan> {</text>
+          <text x="68" y="102" fill="#94a3b8">mapping(addr =&gt; Member)</text>
+          <text x="68" y="122" fill="#c084fc">function <tspan fill="#fde68a">join</tspan>()</text>
+          <text x="80" y="142" fill="#94a3b8">payable external {</text>
+          <text x="80" y="162" fill="#34d399">emit Joined(...);</text>
+          <text x="56" y="182" fill="#c084fc">}</text>
+        </g>
+        <circle cx="310" cy="96" r="34" fill="#22d3ee" opacity=".2"/><circle cx="310" cy="96" r="20" fill="#22d3ee"/>
+        <circle cx="290" cy="170" r="14" fill="#7c5cff"/><circle cx="345" cy="160" r="12" fill="#f472b6"/>
+        <path d="M310 116 L290 156 M310 116 L345 148" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>`;
+    },
+    domain(id) {
+      return bg("#0f1020", "#202a52", id) + `
+        <rect x="40" y="62" width="320" height="52" rx="14" fill="#fff" opacity=".08" stroke="#fff" stroke-opacity=".15"/>
+        <circle cx="68" cy="88" r="8" fill="none" stroke="#a5b4fc" stroke-width="2"/><path d="M74 94 l6 6" stroke="#a5b4fc" stroke-width="2"/>
+        <text x="90" y="94" font-family="Space Grotesk" font-weight="600" font-size="20" fill="#fff">satoshi<tspan fill="#22d3ee">.web3</tspan></text>
+        <rect x="282" y="72" width="68" height="32" rx="10" fill="#22d3ee"/><text x="316" y="93" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="12" fill="#0f1020">BUY</text>
+        <g font-family="JetBrains Mono" font-size="11">
+          <rect x="40" y="134" width="150" height="28" rx="8" fill="#34d399" opacity=".15"/><text x="52" y="152" fill="#6ee7b7">✓ available</text>
+          <rect x="40" y="170" width="150" height="28" rx="8" fill="#fff" opacity=".06"/><text x="52" y="188" fill="#cbd5e1">satoshi.nft</text>
+          <rect x="210" y="134" width="150" height="28" rx="8" fill="#fff" opacity=".06"/><text x="222" y="152" fill="#cbd5e1">satoshi.dao</text>
+          <rect x="210" y="170" width="150" height="28" rx="8" fill="#f87171" opacity=".15"/><text x="222" y="188" fill="#fca5a5">satoshi.eth · taken</text>
+        </g>`;
+    },
+    web(id) {
+      return bg("#10141f", "#1f2a3d", id) + `
+        <rect x="34" y="34" width="250" height="172" rx="12" fill="#f8fafc"/>
+        <rect x="34" y="34" width="250" height="24" rx="12" fill="#e2e8f0"/><rect x="34" y="46" width="250" height="12" fill="#e2e8f0"/>
+        <circle cx="50" cy="46" r="4" fill="#f87171"/><circle cx="62" cy="46" r="4" fill="#fbbf24"/><circle cx="74" cy="46" r="4" fill="#34d399"/>
+        <rect x="50" y="72" width="120" height="14" rx="4" fill="#0f172a"/><rect x="50" y="94" width="160" height="8" rx="4" fill="#94a3b8"/>
+        <rect x="50" y="108" width="140" height="8" rx="4" fill="#cbd5e1"/><rect x="50" y="126" width="64" height="22" rx="6" fill="#7c5cff"/>
+        <rect x="50" y="160" width="70" height="34" rx="6" fill="#e0e7ff"/><rect x="128" y="160" width="70" height="34" rx="6" fill="#cffafe"/><rect x="206" y="160" width="62" height="34" rx="6" fill="#fce7f3"/>
+        <rect x="296" y="66" width="74" height="148" rx="14" fill="#0f172a" stroke="#475569"/>
+        <rect x="304" y="80" width="58" height="40" rx="6" fill="#7c5cff"/><rect x="304" y="128" width="58" height="8" rx="4" fill="#64748b"/>
+        <rect x="304" y="142" width="44" height="8" rx="4" fill="#475569"/><rect x="304" y="186" width="58" height="18" rx="6" fill="#22d3ee"/>`;
+    },
+  };
+  const thumb = (key) => { const id = ++uid; return `<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img">${art[key](id)}</svg>`; };
+
+  // ---------- Carousel ----------
+  const track = document.getElementById("track");
+  const viewport = document.getElementById("viewport");
+  const dotsEl = document.getElementById("dots");
+  const filtersEl = document.getElementById("filters");
+  const cats = ["All", ...new Set(projects.map(p => p.cat))];
+  let filter = "All", index = 0, per = 3, timer = null;
+
+  cats.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "chip" + (c === filter ? " active" : "");
+    b.textContent = c;
+    b.onclick = () => { filter = c; [...filtersEl.children].forEach(x => x.classList.toggle("active", x === b)); render(); };
+    filtersEl.appendChild(b);
+  });
+
+  const list = () => projects.filter(p => filter === "All" || p.cat === filter);
+  const perView = () => innerWidth < 680 ? 1 : innerWidth < 1000 ? 2 : 3;
+  const maxIndex = () => Math.max(0, list().length - per);
+
+  function render() {
+    index = 0;
+    track.innerHTML = list().map(p => `
+      <div class="slide"><article class="card">
+        <div class="thumb">${thumb(p.art)}<span class="badge">${p.cat}</span><span class="badge chain">${p.chain}</span></div>
+        <div class="card-body">
+          <div class="org">${p.org}</div>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+        </div>
+      </article></div>`).join("");
+    layout();
+  }
+
+  function layout() {
+    per = perView();
+    viewport.style.setProperty("--per", per);
+    index = Math.min(index, maxIndex());
+    dotsEl.innerHTML = "";
+    for (let i = 0; i <= maxIndex(); i++) {
+      const d = document.createElement("button");
+      d.className = "dot"; d.setAttribute("aria-label", `Go to slide ${i + 1}`);
+      d.onclick = () => { go(i); restart(); };
+      dotsEl.appendChild(d);
+    }
+    go(index);
+  }
+
+  function go(i, offset = 0) {
+    const max = maxIndex();
+    index = i > max ? 0 : i < 0 ? max : i;
+    const pct = index * (100 / per);
+    track.style.transform = `translateX(calc(${-pct}% + ${offset}px))`;
+    [...dotsEl.children].forEach((d, k) => d.classList.toggle("active", k === index));
+  }
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function restart() { clearInterval(timer); if (!reduced) timer = setInterval(() => go(index + 1), 5000); }
+  document.getElementById("next").onclick = () => { go(index + 1); restart(); };
+  document.getElementById("prev").onclick = () => { go(index - 1); restart(); };
+  const carousel = document.getElementById("carousel");
+  carousel.addEventListener("mouseenter", () => clearInterval(timer));
+  carousel.addEventListener("mouseleave", restart);
+  addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") { go(index + 1); restart(); }
+    if (e.key === "ArrowLeft") { go(index - 1); restart(); }
+  });
+
+  // Drag / swipe
+  let startX = 0, dx = 0, dragging = false;
+  viewport.addEventListener("pointerdown", e => {
+    dragging = true; startX = e.clientX; dx = 0;
+    viewport.classList.add("dragging"); viewport.setPointerCapture(e.pointerId); clearInterval(timer);
+  });
+  viewport.addEventListener("pointermove", e => { if (!dragging) return; dx = e.clientX - startX; go(index, dx); });
+  const end = () => {
+    if (!dragging) return; dragging = false; viewport.classList.remove("dragging");
+    const threshold = viewport.clientWidth / per / 5;
+    if (dx < -threshold) go(index + 1); else if (dx > threshold) go(index - 1); else go(index);
+    restart();
+  };
+  viewport.addEventListener("pointerup", end);
+  viewport.addEventListener("pointercancel", end);
+
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
+
+  render(); restart();
+
+  // ---------- Reveal on scroll ----------
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
